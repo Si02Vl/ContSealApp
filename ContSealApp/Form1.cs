@@ -96,6 +96,8 @@ namespace ContSealApp
         public void Test(List<Container> containersFromClientList, List<Container> containersFromFileList)
         {
             var result = containersFromClientList.Union(containersFromFileList);
+            var result1 = containersFromFileList.Intersect(containersFromClientList);
+
             var sortedResult = from p in result
                                orderby p.ContainerNumber
                                select p;
