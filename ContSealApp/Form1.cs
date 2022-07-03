@@ -33,16 +33,16 @@ namespace ContSealApp
             }
             catch (FormatException ex)
             {
-                MessageBox.Show("Ошибка - " + ex.Message);
+                MessageBox.Show("пїЅпїЅпїЅпїЅпїЅпїЅ - " + ex.Message);
             }
             totalContainersBox.Text += outputBox.Lines.Length - 1;
         }
         public List<Container> InputTextSplitToContainerNumbersAndWeights()
         {
-            string inputTextFromClient = Regex.Replace(inputBox.Text, @"\.", ",").Trim();
-            string[] inputList = inputTextFromClient.Split('\n');
-            string[] inputContainersList = new string[inputList.Length];
-            double[] inputWeightsList = new double[inputList.Length];
+            var inputTextFromClient = Regex.Replace(inputBox.Text, @"\.", ",").Trim();
+            var inputList = inputTextFromClient.Split('\n');
+            var inputContainersList = new string[inputList.Length];
+            var inputWeightsList = new double[inputList.Length];
 
             //double[] outputWeightList = inputWeightsList.Select(s => Double.Parse(s)).ToArray();
 
@@ -65,24 +65,36 @@ namespace ContSealApp
         {
             List<Container> containersFromFileList = new();
 
-            //Открываем файл Экселя
+            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                //Создаём приложение.
+                //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
                 Excel.Application objExcel = new();
                 var objWorkBook = objExcel.Workbooks.Open(openFileDialog1.FileName);
                 var objWorkSheet = (Excel.Worksheet)objWorkBook.Sheets[1];
                 var containersRange = objWorkSheet.UsedRange.Columns["A"];
                 var sealsRange = objWorkSheet.UsedRange.Columns["B"];
+                
+                var containersFromFileArray = (Array)containersRange.Value;
+                if (containersFromFileArray == null)
+                    return containersFromFileList;
+                
+                var containersFromFile = containersFromFileArray.OfType<object>().Select(o => o.ToString()).ToArray();
+                
+                var sealsFromFileArray = (Array)sealsRange.Value;
+                if (sealsFromFileArray == null)
+                    return containersFromFileList;
+                
+                var sealsFromFile = sealsFromFileArray.OfType<object>().Select(o => o.ToString()).ToArray();
 
-                for (int i = 0; i < 50; i++) // сделать определение длины столбца автоматической
+                if (containersFromFileArray.Length != sealsFromFile.Length)
+                    return containersFromFileList;
+
+                // РєРѕРјРјРµРЅС‚Р°СЂРёР№ РЅР° СЂСѓСЃСЃРєРѕРј
+                for (int i = 0; i < containersFromFileArray.Length; i++) // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                 {
-                    var containersFromFileArray = (Array)containersRange.Value;
-                    string[] containersFromFile = containersFromFileArray.OfType<object>().Select(o => o.ToString()).ToArray();
                     testBox1.Text += $"{containersFromFile[i]}\n";
 
-                    var sealsFromFileArray = (Array)sealsRange.Value;
-                    string[] sealsFromFile = sealsFromFileArray.OfType<object>().Select(o => o.ToString()).ToArray();
                     testBox2.Text += $"{sealsFromFile[i]}\n";
 
                     Container containerFromFile = new(i, containersFromFile[i], sealsFromFile[i], 0.0);
@@ -91,6 +103,7 @@ namespace ContSealApp
                 Application.DoEvents();
                 objExcel.Quit();
             }
+            
             return containersFromFileList;
         }
         public void Test(List<Container> containersFromClientList, List<Container> containersFromFileList)
@@ -111,14 +124,14 @@ namespace ContSealApp
             };
 
             // Create new book and sheet
-            Excel.Workbook workBook = excelApp.Workbooks.Add();
-            Excel.Worksheet workSheet = (Excel.Worksheet)workBook.Sheets.Add();
+            var workBook = excelApp.Workbooks.Add();
+            var workSheet = (Excel.Worksheet)workBook.Sheets.Add();
 
-            workSheet.Cells[1, 1] = "Контейнер";
-            workSheet.Cells[1, 2] = "Вес";
-            workSheet.Cells[1, 3] = "Пломба";
+            workSheet.Cells[1, 1] = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+            workSheet.Cells[1, 2] = "пїЅпїЅпїЅ";
+            workSheet.Cells[1, 3] = "пїЅпїЅпїЅпїЅпїЅпїЅ";
 
-            Excel.Range headerRange = workSheet.get_Range("A1", "C1");
+            var headerRange = workSheet.get_Range("A1", "C1");
             headerRange.Font.Bold = true;
             headerRange.Font.Color = ColorTranslator.ToOle(Color.Black);
             headerRange.Interior.Color = ColorTranslator.ToOle(Color.LightGreen);
@@ -142,11 +155,11 @@ namespace ContSealApp
         //    {
         //        await connection.OpenAsync();
         //        dbStatusBox.Text += "Connection is open";
-        //        dbStatusBox.Text += $"\r\nСтрока подключения: {connection.ConnectionString} " +
-        //            $"\r\nБаза данных: {connection.Database}" +
-        //            $"\r\nСервер: {connection.DataSource}" +
-        //            $"\r\nВерсия сервера: {connection.ServerVersion}" +
-        //            $"\r\nСостояние: {connection.State}" +
+        //        dbStatusBox.Text += $"\r\nпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {connection.ConnectionString} " +
+        //            $"\r\nпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: {connection.Database}" +
+        //            $"\r\nпїЅпїЅпїЅпїЅпїЅпїЅ: {connection.DataSource}" +
+        //            $"\r\nпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {connection.ServerVersion}" +
+        //            $"\r\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {connection.State}" +
         //            $"\r\nWork Station Id: {connection.WorkstationId}";
         //    }
 
@@ -159,7 +172,7 @@ namespace ContSealApp
         //            createDB.CommandText = "CREATE DATABASE CONTAINERS_DATABASE";
         //            createDB.Connection = connection;
         //            await createDB.ExecuteNonQueryAsync();
-        //            dbStatusBox.Text += $"\r\nБаза данных создана";
+        //            dbStatusBox.Text += $"\r\nпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
         //        }
         //        catch (SqlException ex)
         //        {
@@ -175,7 +188,7 @@ namespace ContSealApp
         //            createTable.CommandText = "CREATE TABLE Containers_From_File (Id INT IDENTITY, Number NVARCHAR(11), Weight INT, Seal NVARCHAR(10))";
         //            createTable.Connection = connection;
         //            await createTable.ExecuteNonQueryAsync();
-        //            dbStatusBox.Text += $"\r\nТаблица добавлена";
+        //            dbStatusBox.Text += $"\r\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
         //        }
         //        catch (SqlException ex)
         //        {
@@ -187,7 +200,7 @@ namespace ContSealApp
         //            createContainer.CommandText = "INSERT INTO Containers_From_File (Number, Seal, Weight) VALUES (, '', )";
         //            createContainer.Connection = connection;
         //            await createContainer.ExecuteNonQueryAsync();
-        //            dbStatusBox.Text += $"\r\nКонтейнера добавлен";
+        //            dbStatusBox.Text += $"\r\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
         //        }
         //        catch(SqlException ex)
         //        {
