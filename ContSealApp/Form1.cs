@@ -96,6 +96,7 @@ namespace ContSealApp
 
                     Container containerFromFile = new(i, containersFromFile[i], sealsFromFile[i], 0.0);
                     containersFromFileList.Add(containerFromFile);
+                    
                 }
                 Application.DoEvents();
                 objExcel.Quit();
@@ -105,20 +106,20 @@ namespace ContSealApp
         }
         public List<Container> ResultList(List<Container> containersFromClientList, List<Container> containersFromFileList) //добавить создание объектов и возврат их из метода
         {
+            List<Container> containersResult = new();
+            
             var result = containersFromClientList.Union(containersFromFileList);
             var result1 = containersFromFileList.Intersect(containersFromClientList);
             
-            var sortedResult = from p in result
+            var sortedResult = from p in result // sortedResult - работать с этим списком
                                orderby p.ContainerNumber
                                select p;
             outputBox.Text += sortedResult;
             
-            List<Container> containersResult = new();
-            
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < containersResult.Count; i++)
             {
-                Container containerResult = new(i, containersFromFile[i], sealsFromFile[i], 0.0);
-                containersFromFileList.Add(containerResult);
+                Container newContainer = new(i, sortedResult[i], sortedResult[i], sortedResult[i]);
+                containersResult.Add(newContainer);
             }
             return containersResult;
         }
@@ -144,9 +145,9 @@ namespace ContSealApp
 
             for (int j = 1; j <= 50; j++)
             {
-                workSheet.Cells[j + 1, 1] = ;
-                workSheet.Cells[j + 1, 2] = ;
-                workSheet.Cells[j + 1, 3] = ;
+                workSheet.Cells[j + 1, 1] = "!";
+                workSheet.Cells[j + 1, 2] = "@";
+                workSheet.Cells[j + 1, 3] = "#";
             }
 
             excelApp.Quit();
