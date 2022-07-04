@@ -29,7 +29,7 @@ namespace ContSealApp
 
             try
             {
-                Test(InputTextSplitToContainerNumbersAndWeights(), GetInfoFromExcel());
+                ResultList(InputTextSplitToContainerNumbersAndWeights(), GetInfoFromExcel());
             }
             catch (FormatException ex)
             {
@@ -103,15 +103,24 @@ namespace ContSealApp
             
             return containersFromFileList;
         }
-        public void Test(List<Container> containersFromClientList, List<Container> containersFromFileList)
+        public List<Container> ResultList(List<Container> containersFromClientList, List<Container> containersFromFileList) //добавить создание объектов и возврат их из метода
         {
             var result = containersFromClientList.Union(containersFromFileList);
             var result1 = containersFromFileList.Intersect(containersFromClientList);
-
+            
             var sortedResult = from p in result
                                orderby p.ContainerNumber
                                select p;
             outputBox.Text += sortedResult;
+            
+            List<Container> containersResult = new();
+            
+            for (int i = 0; i < 50; i++)
+            {
+                Container containerResult = new(i, containersFromFile[i], sealsFromFile[i], 0.0);
+                containersFromFileList.Add(containerResult);
+            }
+            return containersResult;
         }
         public void WriteToExcel_Click(object sender, EventArgs e)
         {
@@ -143,6 +152,7 @@ namespace ContSealApp
             excelApp.Quit();
             MessageBox.Show("Done!");
         }
+
         private async void WriteToDB_Click(object sender, EventArgs e)
         {
         //    string connectionString = "Server=.\\SQLEXPRESS;Database=master;Trusted_Connection=True;TrustServerCertificate=True;";
