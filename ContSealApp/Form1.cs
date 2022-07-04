@@ -14,7 +14,7 @@ using System.Reflection;
 
 namespace ContSealApp
 { 
-    public partial class InputForm1 : Form //тест!
+    public partial class InputForm1 : Form
     {
         public InputForm1()
         {
@@ -124,21 +124,21 @@ namespace ContSealApp
             var workBook = excelApp.Workbooks.Add();
             var workSheet = (Excel.Worksheet)workBook.Sheets.Add();
 
-            workSheet.Cells[1, 1] = "���������";
-            workSheet.Cells[1, 2] = "���";
-            workSheet.Cells[1, 3] = "������";
+            workSheet.Cells[1, 1] = "Номер контейнера";
+            workSheet.Cells[1, 2] = "Вес";
+            workSheet.Cells[1, 3] = "Пломба";
 
             var headerRange = workSheet.get_Range("A1", "C1");
             headerRange.Font.Bold = true;
             headerRange.Font.Color = ColorTranslator.ToOle(Color.Black);
             headerRange.Interior.Color = ColorTranslator.ToOle(Color.LightGreen);
 
-            //for (int j = 1; j <= 50; j++)
-            //{
-            //    workSheet.Cells[j + 1, 1] = ref ;
-            //    workSheet.Cells[j + 1, 2] = containerWeight;
-            //    workSheet.Cells[j + 1, 3] = containerSeal;
-            //}
+            for (int j = 1; j <= 50; j++)
+            {
+                workSheet.Cells[j + 1, 1] = ;
+                workSheet.Cells[j + 1, 2] = ;
+                workSheet.Cells[j + 1, 3] = ;
+            }
 
             excelApp.Quit();
             MessageBox.Show("Done!");
