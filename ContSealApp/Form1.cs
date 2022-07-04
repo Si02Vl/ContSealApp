@@ -13,8 +13,8 @@ using Microsoft.Data.SqlClient;
 using System.Reflection;
 
 namespace ContSealApp
-{
-    public partial class InputForm1 : Form
+{ 
+    public partial class InputForm1 : Form //тест!
     {
         public InputForm1()
         {
@@ -33,7 +33,7 @@ namespace ContSealApp
             }
             catch (FormatException ex)
             {
-                MessageBox.Show("������ - " + ex.Message);
+                MessageBox.Show("Ошибка - " + ex.Message);
             }
             totalContainersBox.Text += outputBox.Lines.Length - 1;
         }
@@ -65,10 +65,8 @@ namespace ContSealApp
         {
             List<Container> containersFromFileList = new();
 
-            //��������� ���� ������
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                //������ ����������.
                 Excel.Application objExcel = new();
                 var objWorkBook = objExcel.Workbooks.Open(openFileDialog1.FileName);
                 var objWorkSheet = (Excel.Worksheet)objWorkBook.Sheets[1];
@@ -90,8 +88,7 @@ namespace ContSealApp
                 if (containersFromFileArray.Length != sealsFromFile.Length)
                     return containersFromFileList;
 
-                // комментарий на русском
-                for (int i = 0; i < containersFromFileArray.Length; i++) // ������� ����������� ����� ������� ��������������
+                for (int i = 0; i < containersFromFileArray.Length; i++)
                 {
                     testBox1.Text += $"{containersFromFile[i]}\n";
 
