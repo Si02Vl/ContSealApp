@@ -113,17 +113,19 @@ namespace ContSealApp
             var sortedResult  = from p in result
                                orderby p.ContainerNumber
                                select p;
-            outputBox.Text += sortedResult; 
-            
-            for (int i = 0; i < sortedResult.Count(); i++)
+            outputBox.Text += sortedResult;
+
+            foreach (var c in sortedResult)
             {
-                Container newContainer = new(i, "X", "S", 0.0);
+                Container newContainer = new(c.ID, c.ContainerNumber, c.ContainerSeal, c.ContainerWeight);
                 containersResult.Add(newContainer);
             }
             return containersResult;
         }
         public void WriteToExcel_Click(object sender, EventArgs e)
         {
+            //var arrayRange = ResultList().Count;
+            
             Excel.Application excelApp = new()
             {
                 Visible = true
@@ -142,17 +144,19 @@ namespace ContSealApp
             headerRange.Font.Color = ColorTranslator.ToOle(Color.Black);
             headerRange.Interior.Color = ColorTranslator.ToOle(Color.LightGreen);
 
-            for (int j = 1; j <= 50; j++)
+            var i = ResultList();
+            
+            foreach (var i in ResultList())
             {
-                workSheet.Cells[j + 1, 1] = "!";
-                workSheet.Cells[j + 1, 2] = "@";
-                workSheet.Cells[j + 1, 3] = "#";
+                workSheet.Cells[i, 1] = ResultList();
+                workSheet.Cells[i, 2] = ResultList();
+                workSheet.Cells[i, 3] = ResultList();
             }
-
+           
             excelApp.Quit();
             MessageBox.Show("Done!");
         }
-
+        
         private async void WriteToDB_Click(object sender, EventArgs e)
         {
         //    string connectionString = "Server=.\\SQLEXPRESS;Database=master;Trusted_Connection=True;TrustServerCertificate=True;";
