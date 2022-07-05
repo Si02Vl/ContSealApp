@@ -1,16 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Threading;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using Excel = Microsoft.Office.Interop.Excel;
-using Microsoft.Data.SqlClient;
-using System.Reflection;
 
 namespace ContSealApp
 { 
@@ -33,7 +22,7 @@ namespace ContSealApp
             }
             catch (FormatException ex)
             {
-                MessageBox.Show("Ошибка - " + ex.Message);
+                MessageBox.Show(@"Ошибка - " + ex.Message);
             }
             totalContainersBox.Text += outputBox.Lines.Length - 1;
         }
@@ -90,9 +79,9 @@ namespace ContSealApp
 
                 for (int i = 0; i < containersFromFileArray.Length; i++)
                 {
-                    testBox1.Text += $"{containersFromFile[i]}\n";
+                    testBox1.Text += $@"{containersFromFile[i]}";
 
-                    testBox2.Text += $"{sealsFromFile[i]}\n";
+                    testBox2.Text += $@"{sealsFromFile[i]}\n";
 
                     Container containerFromFile = new(i, containersFromFile[i], sealsFromFile[i], 0.0);
                     containersFromFileList.Add(containerFromFile);
@@ -144,17 +133,15 @@ namespace ContSealApp
             headerRange.Font.Color = ColorTranslator.ToOle(Color.Black);
             headerRange.Interior.Color = ColorTranslator.ToOle(Color.LightGreen);
 
-            var i = ResultList();
-            
-            foreach (var i in ResultList())
+            foreach (var j in ResultList(InputTextSplitToContainerNumbersAndWeights(), GetInfoFromExcel()))
             {
-                workSheet.Cells[i, 1] = ResultList();
-                workSheet.Cells[i, 2] = ResultList();
-                workSheet.Cells[i, 3] = ResultList();
+                workSheet.Cells[j, 1] = j.ContainerNumber;
+                workSheet.Cells[j, 2] = j.ContainerSeal;
+                workSheet.Cells[j, 3] = j.ContainerWeight;
             }
-           
+                
             excelApp.Quit();
-            MessageBox.Show("Done!");
+            MessageBox.Show(@"Done!");
         }
         
         private async void WriteToDB_Click(object sender, EventArgs e)
