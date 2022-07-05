@@ -104,21 +104,20 @@ namespace ContSealApp
             
             return containersFromFileList;
         }
-        public List<Container> ResultList(List<Container> containersFromClientList, List<Container> containersFromFileList) //добавить создание объектов и возврат их из метода
+        public List<Container> ResultList(List<Container> containersFromClientList, List<Container> containersFromFileList)
         {
             List<Container> containersResult = new();
             
-            var result = containersFromClientList.Union(containersFromFileList);
-            var result1 = containersFromFileList.Intersect(containersFromClientList);
+            var result = containersFromFileList.Union(containersFromClientList);
             
-            var sortedResult = from p in result // sortedResult - работать с этим списком
+            var sortedResult  = from p in result
                                orderby p.ContainerNumber
                                select p;
-            outputBox.Text += sortedResult;
+            outputBox.Text += sortedResult; 
             
-            for (int i = 0; i < containersResult.Count; i++)
+            for (int i = 0; i < sortedResult.Count(); i++)
             {
-                Container newContainer = new(i, sortedResult[i], sortedResult[i], sortedResult[i]);
+                Container newContainer = new(i, "X", "S", 0.0);
                 containersResult.Add(newContainer);
             }
             return containersResult;
