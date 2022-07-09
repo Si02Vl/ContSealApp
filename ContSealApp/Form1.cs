@@ -93,27 +93,34 @@ namespace ContSealApp
             
             return containersFromFileList;
         }
-        public List<Container> ResultList(List<Container> containersFromClientList, List<Container> containersFromFileList)
+        public List<Container> ResultList(List<Container> containerFromClientList, List<Container> containersFromFileList)
         {
             List<Container> containersResult = new();
             
-            var result = containersFromFileList.Union(containersFromClientList);
+            //var result = containersFromFileList.Union(containerFromClientList);
             
-            var sortedResult  = from p in result
-                               orderby p.ContainerNumber
-                               select p;
-            outputBox.Text += sortedResult;
-
+            //var sortedResult  = from p in result
+                               //orderby p.ContainerNumber
+                               //select p;
+            
+            var sortedResult = containersFromFileList.Where(n => containerFromClientList.Any(t => t.ContainerNumber == n.ContainerNumber)); 
+            
             foreach (var c in sortedResult)
             {
                 Container newContainer = new(c.ID, c.ContainerNumber, c.ContainerSeal, c.ContainerWeight);
                 containersResult.Add(newContainer);
             }
+
+            for (int i = 0; i < sortedResult.Count(); i++)
+            {
+                outputBox.Text += $"{containersResult[i].ID} - {containersResult[i].ContainerNumber} - {containersResult[i].ContainerSeal} - {containersResult[i].ContainerWeight}\r\n";
+            }
+            
             return containersResult;
         }
         public void WriteToExcel_Click(object sender, EventArgs e)
         {
-            //var arrayRange = ResultList().Count;
+            var arrayRange = ResultList(InputTextSplitToContainerNumbersAndWeights(), GetInfoFromExcel()).Count;
             
             Excel.Application excelApp = new()
             {
@@ -133,9 +140,9 @@ namespace ContSealApp
             headerRange.Font.Color = ColorTranslator.ToOle(Color.Black);
             headerRange.Interior.Color = ColorTranslator.ToOle(Color.LightGreen);
 
-            foreach (var j in ResultList(InputTextSplitToContainerNumbersAndWeights(), GetInfoFromExcel()))
+            foreach (var j in ResultList(InputTextSplitToContainerNumbersAndWeights(), GetInfoFromExcel())) // нужен FOR??
             {
-                workSheet.Cells[j, 1] = j.ContainerNumber;
+                
                 workSheet.Cells[j, 2] = j.ContainerSeal;
                 workSheet.Cells[j, 3] = j.ContainerWeight;
             }
