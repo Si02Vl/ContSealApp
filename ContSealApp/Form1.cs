@@ -79,9 +79,9 @@ namespace ContSealApp
 
                 for (int i = 0; i < containersFromFileArray.Length; i++)
                 {
-                    testBox1.Text += $@"{containersFromFile[i]}";
+                    testBox1.Text += $"{containersFromFile[i]}\n";
 
-                    testBox2.Text += $@"{sealsFromFile[i]}\n";
+                    testBox2.Text += $"{sealsFromFile[i]}\n";
 
                     Container containerFromFile = new(i, containersFromFile[i], sealsFromFile[i], 0.0);
                     containersFromFileList.Add(containerFromFile);
@@ -124,11 +124,11 @@ namespace ContSealApp
             var workBook = excelApp.Workbooks.Add();
             var workSheet = (Excel.Worksheet)workBook.Sheets.Add();
 
-            workSheet.Cells[1, 1] = "Номер контейнера";
-            workSheet.Cells[1, 2] = "Вес";
-            workSheet.Cells[1, 3] = "Пломба";
+            workSheet.Cells[1, 1] = @"Номер контейнера";
+            workSheet.Cells[1, 2] = @"Вес";
+            workSheet.Cells[1, 3] = @"Пломба";
 
-            var headerRange = workSheet.get_Range("A1", "C1");
+            var headerRange = workSheet.Range["A1", "C1"];
             headerRange.Font.Bold = true;
             headerRange.Font.Color = ColorTranslator.ToOle(Color.Black);
             headerRange.Interior.Color = ColorTranslator.ToOle(Color.LightGreen);
