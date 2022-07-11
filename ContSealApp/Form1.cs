@@ -109,18 +109,18 @@ namespace ContSealApp
 
             foreach (var c in sortedResult)
             {
-                Container newContainer = new(c.ID, c.ContainerNumber, c.ContainerSeal, c.ContainerWeight);
+                Container newContainer = new(c.Id, c.ContainerNumber, c.ContainerSeal, c.ContainerWeight);
                 containersResult.Add(newContainer);
             }
 
-            if ()
+            if (containersResult == null) //херня
             {
                 
             }
 
             for (int i = 0; i < sortedResult.Count(); i++)
             {
-                outputBox.Text += $"{containersResult[i].ID} - {containersResult[i].ContainerNumber} - {containersResult[i].ContainerSeal} - {containersResult[i].ContainerWeight}\r\n";
+                outputBox.Text += $"{containersResult[i].Id} - {containersResult[i].ContainerNumber} - {containersResult[i].ContainerSeal} - {containersResult[i].ContainerWeight}\r\n";
             }
             
             return containersResult;
@@ -225,14 +225,14 @@ namespace ContSealApp
     }
     public class Container
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string ContainerNumber { get; set; }
         public string ContainerSeal { get; set; }
         public double ContainerWeight { get; set; }
 
         public Container(int id, string containerNumber, string containerSeal, double containerWeight)
         {
-            ID = id;
+            Id = id;
             ContainerNumber = containerNumber;
             ContainerSeal = containerSeal;
             ContainerWeight = containerWeight;
