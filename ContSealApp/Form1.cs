@@ -97,14 +97,13 @@ namespace ContSealApp
         {
             List<Container> containersResult = new();
             
-            //var result = containersFromFileList.Union(containerFromClientList);
+            var test = containersFromFileList.Intersect(containerFromClientList);
             
-            //var sortedResult  = from p in result
-                               //orderby p.ContainerNumber
-                               //select p;
-            
-            var sortedResult = containersFromFileList.Where(n => containerFromClientList.Any(t => t.ContainerNumber == n.ContainerNumber)); 
-            
+            var result = containersFromFileList.Where(n => containerFromClientList.Any(t => t.ContainerNumber == n.ContainerNumber));
+            var sortedResult  = from p in result
+                                orderby p.ContainerNumber
+                                select p;
+                
             foreach (var c in sortedResult)
             {
                 Container newContainer = new(c.ID, c.ContainerNumber, c.ContainerSeal, c.ContainerWeight);
