@@ -48,6 +48,11 @@ namespace ContSealApp
                 Container containerFromClient = new(n, inputContainersList[n], "None", inputWeightsList[n]);
                 containersFromClientList.Add(containerFromClient);
             }
+            //рзобраться с добавлением в коллекцию
+            var containersFromClientOutputList = from p in containersFromClientList
+                        orderby p.ContainerNumber
+                        select p;
+            
             return containersFromClientList;
         }
         public List<Container> GetInfoFromExcel()
@@ -97,17 +102,20 @@ namespace ContSealApp
         {
             List<Container> containersResult = new();
             
-            var test = containersFromFileList.Intersect(containerFromClientList);
-            
             var result = containersFromFileList.Where(n => containerFromClientList.Any(t => t.ContainerNumber == n.ContainerNumber));
             var sortedResult  = from p in result
                                 orderby p.ContainerNumber
                                 select p;
-                
+
             foreach (var c in sortedResult)
             {
                 Container newContainer = new(c.ID, c.ContainerNumber, c.ContainerSeal, c.ContainerWeight);
                 containersResult.Add(newContainer);
+            }
+
+            if ()
+            {
+                
             }
 
             for (int i = 0; i < sortedResult.Count(); i++)
