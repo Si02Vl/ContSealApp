@@ -139,9 +139,6 @@ namespace ContSealApp
         {
             try
             {
-                //var arrayRange = ResultList(SortedListFromClient(), GetInfoFromExcel()).Count;
-                var arrayRange = ResultList(SortedListFromClient(), GetInfoFromExcel()).Count;
-                
                 Excel.Application excelApp = new()
                 {
                     Visible = true

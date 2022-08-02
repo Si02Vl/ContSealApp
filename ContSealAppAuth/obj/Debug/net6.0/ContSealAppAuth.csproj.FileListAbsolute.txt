@@ -1,0 +1,12 @@
+C:\Users\user\RiderProjects\ContSealApp\ContSealAppAuth\bin\Debug\net6.0\ContSealAppAuth.deps.json
+C:\Users\user\RiderProjects\ContSealApp\ContSealAppAuth\bin\Debug\net6.0\ContSealAppAuth.dll
+C:\Users\user\RiderProjects\ContSealApp\ContSealAppAuth\bin\Debug\net6.0\ContSealAppAuth.pdb
+C:\Users\user\RiderProjects\ContSealApp\ContSealAppAuth\obj\Debug\net6.0\ContSealAppAuth.csproj.AssemblyReference.cache
+C:\Users\user\RiderProjects\ContSealApp\ContSealAppAuth\obj\Debug\net6.0\ContSealAppAuth.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\RiderProjects\ContSealApp\ContSealAppAuth\obj\Debug\net6.0\ContSealAppAuth.AssemblyInfoInputs.cache
+C:\Users\user\RiderProjects\ContSealApp\ContSealAppAuth\obj\Debug\net6.0\ContSealAppAuth.AssemblyInfo.cs
+C:\Users\user\RiderProjects\ContSealApp\ContSealAppAuth\obj\Debug\net6.0\ContSealAppAuth.csproj.CoreCompileInputs.cache
+C:\Users\user\RiderProjects\ContSealApp\ContSealAppAuth\obj\Debug\net6.0\ContSealAppAuth.dll
+C:\Users\user\RiderProjects\ContSealApp\ContSealAppAuth\obj\Debug\net6.0\refint\ContSealAppAuth.dll
+C:\Users\user\RiderProjects\ContSealApp\ContSealAppAuth\obj\Debug\net6.0\ContSealAppAuth.pdb
+C:\Users\user\RiderProjects\ContSealApp\ContSealAppAuth\obj\Debug\net6.0\ref\ContSealAppAuth.dll

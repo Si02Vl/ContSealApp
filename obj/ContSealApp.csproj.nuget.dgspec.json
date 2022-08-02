@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Users\\Si02\\Desktop\\Si02Vl\\ContSealApp\\ContSealApp.csproj": {}
+    "C:\\Users\\user\\RiderProjects\\ContSealApp\\ContSealApp.csproj": {}
   },
   "projects": {
-    "D:\\Users\\Si02\\Desktop\\Si02Vl\\ContSealApp\\ContSealApp.csproj": {
+    "C:\\Users\\user\\RiderProjects\\ContSealApp\\ContSealApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Users\\Si02\\Desktop\\Si02Vl\\ContSealApp\\ContSealApp.csproj",
+        "projectUniqueName": "C:\\Users\\user\\RiderProjects\\ContSealApp\\ContSealApp.csproj",
         "projectName": "ContSealApp",
-        "projectPath": "D:\\Users\\Si02\\Desktop\\Si02Vl\\ContSealApp\\ContSealApp.csproj",
-        "packagesPath": "D:\\Users\\Si02\\.nuget\\packages\\",
-        "outputPath": "D:\\Users\\Si02\\Desktop\\Si02Vl\\ContSealApp\\obj\\",
+        "projectPath": "C:\\Users\\user\\RiderProjects\\ContSealApp\\ContSealApp.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\RiderProjects\\ContSealApp\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "D:\\Users\\Si02\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -44,9 +40,9 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "dependencies": {
-            "Microsoft.Data.SqlClient": {
+            "Selenium.WebDriver": {
               "target": "Package",
-              "version": "[4.1.0, )"
+              "version": "[4.3.0, )"
             }
           },
           "imports": [
@@ -67,7 +63,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }
