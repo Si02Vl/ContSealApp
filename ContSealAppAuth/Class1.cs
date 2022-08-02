@@ -1,15 +1,38 @@
-﻿using OpenQA.Selenium.Firefox;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.Edge;
+using WebDriverManager;
+using WebDriverManager.DriverConfigs.Impl;
 
-namespace SeleniumDocs.Hello
+namespace ContSealAuth
 {
-    public class HelloSelenium
+    public class FirstScriptTest
     {
-        public static void Auth()
+        public static void EdgeSession()
         {
-            var driver = new FirefoxDriver();
+            new DriverManager().SetUpDriver(new EdgeConfig());
+            var driver = new EdgeDriver();
             
-            driver.Navigate().GoToUrl("https://selenium.dev");
+            //driver.Manage().Window.Maximize();
+
+            driver.Navigate().GoToUrl("https://google.com");
+
+            var title = driver.Title;
+            Assert.AreEqual("Google", title);
+
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(500);
+
+            var searchBox = driver.FindElement(By.Name("q"));
+            var searchButton = driver.FindElement(By.Name("btnK"));
             
+            searchBox.SendKeys("Selenium");
+            searchButton.Click();
+            
+            searchBox = driver.FindElement(By.Name("q"));
+            var value = searchBox.GetAttribute("value");
+            Assert.AreEqual("Selenium", value);
+
             driver.Quit();
         }
     }
