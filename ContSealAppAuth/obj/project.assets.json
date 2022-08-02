@@ -363,12 +363,6 @@
           "lib/net5.0/WebDriver.dll": {}
         }
       },
-      "Selenium.WebDriver.MSEdgeDriver/105.0.1329.1-pre": {
-        "type": "package",
-        "build": {
-          "build/Selenium.WebDriver.MSEdgeDriver.targets": {}
-        }
-      },
       "SharpZipLib/1.3.3": {
         "type": "package",
         "compile": {
@@ -1201,24 +1195,6 @@
         "selenium.webdriver.nuspec"
       ]
     },
-    "Selenium.WebDriver.MSEdgeDriver/105.0.1329.1-pre": {
-      "sha512": "n1b7lXM0zRD+G0IwyNohvUVoBySwYC0l65DIlounMpBN/3cXS2exktZWzAT4hsTlVw1XaZSTSlAnJvAjXjJOZg==",
-      "type": "package",
-      "path": "selenium.webdriver.msedgedriver/105.0.1329.1-pre",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "build/DefinePropertiesMSEdgeDriver.targets",
-        "build/Selenium.WebDriver.MSEdgeDriver.targets",
-        "driver/linux64/msedgedriver",
-        "driver/mac64/msedgedriver",
-        "driver/win32/msedgedriver.exe",
-        "driver/win64/msedgedriver.exe",
-        "license/license.txt",
-        "selenium.webdriver.msedgedriver.105.0.1329.1-pre.nupkg.sha512",
-        "selenium.webdriver.msedgedriver.nuspec"
-      ]
-    },
     "SharpZipLib/1.3.3": {
       "sha512": "N8+hwhsKZm25tDJfWpBSW7EGhH/R7EMuiX+KJ4C4u+fCWVc1lJ5zg1u3S1RPPVYgTqhx/C3hxrqUpi6RwK5+Tg==",
       "type": "package",
@@ -1479,7 +1455,6 @@
       "Microsoft.NET.Test.Sdk >= 17.4.0-preview-20220707-01",
       "Microsoft.VisualStudio.TestPlatform >= 14.0.0",
       "Selenium.WebDriver >= 4.3.0",
-      "Selenium.WebDriver.MSEdgeDriver >= 105.0.1329.1-pre",
       "WebDriverManager >= 2.14.1"
     ]
   },
@@ -1533,10 +1508,6 @@
           "Selenium.WebDriver": {
             "target": "Package",
             "version": "[4.3.0, )"
-          },
-          "Selenium.WebDriver.MSEdgeDriver": {
-            "target": "Package",
-            "version": "[105.0.1329.1-pre, )"
           },
           "WebDriverManager": {
             "target": "Package",

@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.IE;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 
@@ -11,10 +11,10 @@ namespace ContSealAuth
     {
         public static void EdgeSession()
         {
-            new DriverManager().SetUpDriver(new EdgeConfig());
-            var driver = new EdgeDriver();
             
-            //driver.Manage().Window.Maximize();
+            new DriverManager().SetUpDriver(new InternetExplorerConfig());
+            var driver = new InternetExplorerDriver();
+            driver.Manage().Window.Maximize();
 
             driver.Navigate().GoToUrl("https://google.com");
 
